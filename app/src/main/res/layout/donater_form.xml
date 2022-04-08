@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:hint="Donater Name"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/donater_name"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:hint="Phone Number"
+                android:inputType="number"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/donter_PhoneNo"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:hint="City"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/donter_city"
+                    android:layout_height="wrap_content">
+                </EditText>
+
+            </EditText>
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:hint="Donation Name"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/donation_name"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:hint="Donation Description"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/donation_description"
+                android:layout_height="wrap_content"/>
+
+            <Spinner
+                android:id="@+id/donation_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:hint="Donation City"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/donation_city"
+                android:layout_height="wrap_content">
+            </EditText>
+
+
+            <Button
+
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:id="@+id/dontion_formsubmit"
+                android:background="@color/colorPrimary">
+
+            </Button>
+
+
+
+
+</LinearLayout>
