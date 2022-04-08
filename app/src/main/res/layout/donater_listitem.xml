@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayoutdf"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   >
+
+    <ImageView
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:contentDescription="Icon" />
+
+    <TextView
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/itemName"
+        android:textColor="#000000"
+        android:text="Donation Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/imageView"
+        android:layout_toRightOf="@id/imageView"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:layout_marginRight="20dp"
+        android:id="@+id/itemDesc"
+        android:text="this is the desciptuion of the products "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/imageView"
+        android:layout_toRightOf="@id/imageView"
+        android:layout_below="@id/itemName"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:textStyle="italic"
+        android:layout_marginRight="20dp"
+        android:id="@+id/lastLocation"
+        android:text="Current Location : Donater"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/imageView"
+        android:layout_toRightOf="@id/imageView"
+        android:layout_below="@id/itemDesc"
+        android:textSize="16sp"/>
+
+
+</RelativeLayout>
