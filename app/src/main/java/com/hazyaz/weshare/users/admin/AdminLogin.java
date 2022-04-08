@@ -83,7 +83,7 @@ public class AdminLogin extends Fragment {
     }
 
     void LoginAdmin(String username, String email, String password){
-        mAuth.signInWithEmailAndPassword(email, password)
+        mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -91,11 +91,11 @@ public class AdminLogin extends Fragment {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            new Intent(getContext(), AdminHome.class);
+                            startActivity(new Intent(getContext(), AdminHome.class));
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(getContext(),"Authentication failed.",
+                            Toast.makeText(getContext(),"Authentication failed."+task.getException(),
                                     Toast.LENGTH_SHORT).show();
 
                         }

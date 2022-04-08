@@ -2,8 +2,6 @@ package com.hazyaz.weshare.users.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -20,7 +18,9 @@ public class AdminHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_home);
+        setContentView(R.layout.admin_home);
+
+        mAuth = FirebaseAuth.getInstance();
 
         Spinner spinner = (Spinner) findViewById(R.id.area_spinner);
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>
@@ -29,7 +29,6 @@ public class AdminHome extends AppCompatActivity {
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);
-
 
 
 

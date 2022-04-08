@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorAccent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:hint="Name"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/ai_reg_name"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:hint="Email"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/ai_reg_email"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/ai_reg_password"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+              android:hint="Phone Number"
+                android:inputType="number"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/ai_reg_PhoneNo"
+                android:layout_height="wrap_content">
+            </EditText>
+
+
+            <Spinner
+                android:id="@+id/area_spinner_ai_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:hint="City"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/ai_reg_Area"
+                android:layout_height="wrap_content">
+            </EditText>
+
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:hint="City"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/ai_reg_city"
+                android:layout_height="wrap_content"/>
+
+            <Button
+
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:id="@+id/ai_reg_submit"
+                android:background="@color/colorPrimary">
+
+            </Button>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

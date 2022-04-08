@@ -7,14 +7,15 @@ import android.os.Bundle;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hazyaz.weshare.R;
-import com.hazyaz.weshare.users.admin.AdminLogin;
 
-public class AreaIncharge_Home extends AppCompatActivity {
+public class AIHome extends AppCompatActivity {
     FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_area_incharge__home);
+        setContentView(R.layout.ai_home);
+
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -25,8 +26,7 @@ public class AreaIncharge_Home extends AppCompatActivity {
 
         if(currentUser==null){
             getSupportFragmentManager().beginTransaction()
-                    .setReorderingAllowed(true)
-                    .add(R.id.fragment_container, AdminLogin.class, null)
+                    .add(R.id.fragment_container, AILogin.class, null)
                     .commit();
         }
     }

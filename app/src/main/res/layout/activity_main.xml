@@ -10,9 +10,7 @@
 <!--Addding the toolbar where the navigation drawer icon will be shown-->
 <!--  <include layout="@layout/main_toolbar"/>-->
 
-
     <include layout="@layout/activity_content"/>
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -21,6 +19,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/navigation_header_mainactivity"
-        app:menu="@menu/menu_mainactivity" />
+        app:menu="@menu/menu_mainactivity"
+        />
 
 </androidx.drawerlayout.widget.DrawerLayout>

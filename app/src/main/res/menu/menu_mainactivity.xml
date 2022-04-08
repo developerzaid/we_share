@@ -9,15 +9,15 @@
             android:icon="@drawable/ic_baseline_home_24"
             android:title="HOME" />
         <item
-            android:id="@+id/nav_user_login"
+            android:id="@+id/nav_donater_login"
             android:icon="@drawable/ic_baseline_self_improvement_24"
             android:title="Donater Login" />
         <item
-            android:id="@+id/nav_commander_login"
+            android:id="@+id/nav_area_incharge"
             android:icon="@drawable/ic_baseline_local_police_24"
             android:title="Area Incharge" />
         <item
-            android:id="@+id/nav_school_login"
+            android:id="@+id/nav_admin"
             android:icon="@drawable/ic_baseline_verified_user_24"
             android:title="Admin" />
 
@@ -26,7 +26,6 @@
 
     <item android:title="Communicate">
         <menu>
-
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_baseline_connect_without_contact_24"
