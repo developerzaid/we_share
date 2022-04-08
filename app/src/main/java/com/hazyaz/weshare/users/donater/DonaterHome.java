@@ -18,6 +18,8 @@ public class DonaterHome extends AppCompatActivity {
         setContentView(R.layout.donater_home);
         mAuth = FirebaseAuth.getInstance();
 
+
+
         Button donate = findViewById(R.id.donate_button);
         donate.setOnClickListener(new View.OnClickListener() {
             @Override
