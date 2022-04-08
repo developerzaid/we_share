@@ -17,11 +17,14 @@ import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.hazyaz.weshare.introduction.Introduction;
+import com.hazyaz.weshare.users.admin.AdminHome;
 
+import java.net.Inet4Address;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,17 +42,11 @@ public class MainActivity extends AppCompatActivity {
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
-
-        // pass the Open and Close toggle for the drawer layout listener
-        // to toggle the button
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-
-        // to make the Navigation drawer icon always appear on the action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+//        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+//        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
+//        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+//        actionBarDrawerToggle.syncState();
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -59,11 +56,16 @@ public class MainActivity extends AppCompatActivity {
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
 
+            int id = item.getItemId();
+
+
+
 
             return true;
-
         }
         return super.onOptionsItemSelected(item);
+
+
     }
     void isIntroShownToUser(){
 
