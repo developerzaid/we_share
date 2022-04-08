@@ -15,14 +15,17 @@
         android:textSize="30dp"
         android:textStyle="bold"
         android:id="@+id/ai_text"
-        ></TextView>
+        >
+    </TextView>
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:src="@drawable/ic_baseline_connect_without_contact_24"
         android:layout_below="@+id/text"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="100dp"></ImageView>
+        android:layout_marginLeft="100dp">
+
+    </ImageView>
 
     <EditText
         android:layout_width="match_parent"

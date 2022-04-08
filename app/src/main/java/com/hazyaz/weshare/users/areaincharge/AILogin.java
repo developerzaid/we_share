@@ -34,9 +34,7 @@ public class AILogin extends Fragment {
     FirebaseAuth mAuth;
     TextView aiRegisterButton;
 
-    AILogin(){
 
-    }
 
     @Nullable
     @Override
@@ -44,58 +42,58 @@ public class AILogin extends Fragment {
         View rootViewAdmin = inflater.inflate(R.layout.ai_login,
                 container, false);
 
-//        ai_username=rootViewAdmin.findViewById(R.id.ai_username);
-//        ai_password=rootViewAdmin.findViewById(R.id.ai_password);
-//        ai_email=rootViewAdmin.findViewById(R.id.ai_email);
-//        loginBtn=rootViewAdmin.findViewById(R.id.ai_loginBtn);
-//        mAuth = FirebaseAuth.getInstance();
-//        aiRegisterButton = rootViewAdmin.findViewById(R.id.ai_register);
-//
-//
-//     aiRegisterButton.setOnClickListener(new View.OnClickListener() {
-//    @Override
-//    public void onClick(View view) {
-//        AIRegister nextFrag= new AIRegister();
-//        getActivity().getSupportFragmentManager().beginTransaction()
-//                .add(R.id.fragment_container, nextFrag, "findThisFragment")
-//                .addToBackStack(null)
-//                .commit();
-//    }
-//});
-//
-//        loginBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //handle login
-//                //admin info
-//                String email,username,password;
-//                email=ai_email.getText().toString().trim();
-//                password=ai_password.getText().toString().trim();
-//                username=ai_username.getText().toString().trim();
-//                if(username.equals("")){
-//                    ai_username.setError("Empty");
-//                    ai_username.setFocusable(true);
-//                }
-//                else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-//                    ai_email.setError("Invalided Email");
-//                    ai_email.setFocusable(true);
-//                }
-//                else if(password.length()<6){
-//                    ai_password.setError("Password length at least 6 characters");
-//                    ai_password.setFocusable(true);
-//                }
-//                else {
-//
-//                    SharedPreferences.Editor editor;
-//                    editor= PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
-//                    editor.putString("admin_username", email.trim());
-//                    editor.putString("admin_password", password.trim());
-//                    editor.apply();
-//                    LoginAreaIncharge(username,email,password);
-//
-//                }
-//            }
-//        });
+        ai_username=rootViewAdmin.findViewById(R.id.ai_username);
+        ai_password=rootViewAdmin.findViewById(R.id.ai_password);
+        ai_email=rootViewAdmin.findViewById(R.id.ai_email);
+        loginBtn=rootViewAdmin.findViewById(R.id.ai_loginBtn);
+        mAuth = FirebaseAuth.getInstance();
+        aiRegisterButton = rootViewAdmin.findViewById(R.id.ai_register);
+
+
+     aiRegisterButton.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        AIRegister nextFrag= new AIRegister();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container, nextFrag, "findThisFragment")
+                .addToBackStack(null)
+                .commit();
+    }
+});
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //handle login
+                //admin info
+                String email,username,password;
+                email=ai_email.getText().toString().trim();
+                password=ai_password.getText().toString().trim();
+                username=ai_username.getText().toString().trim();
+                if(username.equals("")){
+                    ai_username.setError("Empty");
+                    ai_username.setFocusable(true);
+                }
+                else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    ai_email.setError("Invalided Email");
+                    ai_email.setFocusable(true);
+                }
+                else if(password.length()<6){
+                    ai_password.setError("Password length at least 6 characters");
+                    ai_password.setFocusable(true);
+                }
+                else {
+
+                    SharedPreferences.Editor editor;
+                    editor= PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+                    editor.putString("admin_username", email.trim());
+                    editor.putString("admin_password", password.trim());
+                    editor.apply();
+                    LoginAreaIncharge(username,email,password);
+
+                }
+            }
+        });
         return rootViewAdmin;
     }
 
