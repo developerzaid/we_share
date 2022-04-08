@@ -19,6 +19,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.hazyaz.weshare.introduction.Introduction;
 import com.hazyaz.weshare.users.admin.AdminHome;
 import com.hazyaz.weshare.users.areaincharge.AIHome;
+import com.hazyaz.weshare.users.donater.DonaterHome;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private AppBarConfiguration mAppBarConfiguration;
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_donater_login:
-
+                startActivity(new Intent(MainActivity.this, DonaterHome.class));
                 break;
             case R.id.nav_area_incharge:
                 startActivity(new Intent(MainActivity.this, AIHome.class));

@@ -3,7 +3,9 @@ package com.hazyaz.weshare.users.areaincharge;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,6 +95,12 @@ public class AIRegister extends Fragment {
                     ai_password.setError("Password length at least 6 characters");
                     ai_password.setFocusable(true);
                 }
+                else{
+                    SharedPreferences.Editor editor;
+                    editor= PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+                    editor.putString("AreaIncharge", "LoggedIn");
+                    editor.apply();
+                }
             // Sending data to firebase
                 RegisterAreaIncharge(name,pass,email,phone,city,area);
             }
@@ -131,7 +139,7 @@ public class AIRegister extends Fragment {
                             FirebaseDatabase database=FirebaseDatabase.getInstance();
 
                             DatabaseReference reference=database.getReference("AreaIncharge");
-                            reference.child(name).setValue(hashMap);
+                            reference.child(uid).setValue(hashMap);
                             //sucess
                             startActivity(new Intent(getContext(), AIHome.class));
                         }

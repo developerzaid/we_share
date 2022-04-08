@@ -2,7 +2,9 @@ package com.hazyaz.weshare.users.areaincharge;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,9 +24,13 @@ public class AIHome extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String AILogged =prefs.getString("AreaIncharge","");
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if(currentUser==null){
+        if(currentUser==null && AILogged.equals("LoggedIn")){
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, AILogin.class, null)
                     .commit();
