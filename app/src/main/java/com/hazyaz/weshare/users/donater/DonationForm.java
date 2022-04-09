@@ -1,7 +1,10 @@
 package com.hazyaz.weshare.users.donater;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.camera2.TotalCaptureResult;
 import android.os.Bundle;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -71,7 +75,7 @@ public class DonationForm extends Fragment {
             @Override
             public void onClick(View view) {
 
-                progressDialog.setMessage("Donation req sending to area incharge");
+                progressDialog.setMessage("Donation Request Sending");
                 progressDialog.show();
 
 
@@ -125,7 +129,18 @@ public class DonationForm extends Fragment {
 
                 if(task.isSuccessful()){
                     progressDialog.dismiss();
-                    startActivity(new Intent(getContext(),DonaterHome.class));
+
+                    new AlertDialog.Builder(getContext(),4)
+                            .setTitle("Donation Request")
+                            .setMessage("Your Donation Request is sent to the Area Incharge, they will contact you shortly")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    startActivity(new Intent(getContext(),DonaterHome.class));
+                                }
+                            })
+                            .create()
+                            .show();
                 }
                 else{
                     Toast.makeText(getContext(),"Cannot send data to server ",Toast.LENGTH_LONG).show();

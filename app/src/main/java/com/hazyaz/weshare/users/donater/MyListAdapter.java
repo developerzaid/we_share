@@ -15,7 +15,7 @@ import com.hazyaz.weshare.R;
 import java.util.ArrayList;
 
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder>{
-    private ArrayList<ArrayList<String >> listdata;
+    private final ArrayList<ArrayList<String >> listdata;
 
     // RecyclerView recyclerView;
     public MyListAdapter(ArrayList<ArrayList<String>> listdata) {
@@ -26,8 +26,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem= layoutInflater.inflate(R.layout.donater_listitem, parent, false);
-        ViewHolder viewHolder = new ViewHolder(listItem);
-        return viewHolder;
+        return new ViewHolder(listItem);
     }
 
     @Override
