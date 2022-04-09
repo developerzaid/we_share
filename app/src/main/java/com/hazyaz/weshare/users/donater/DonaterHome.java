@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.hazyaz.weshare.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class DonaterHome extends AppCompatActivity {
@@ -31,7 +32,7 @@ public class DonaterHome extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseAuth mAuth;
-    ArrayList<ArrayList<String>> donations;
+    ArrayList<ArrayList<String>> donations = new ArrayList<ArrayList<String>>();
     MyListAdapter adapter;
     RecyclerView recyclerView;
     TextView uName, uPhone, uCity, uArea;
@@ -42,28 +43,23 @@ public class DonaterHome extends AppCompatActivity {
         setContentView(R.layout.donater_home);
         mAuth = FirebaseAuth.getInstance();
 
-        String uid = mAuth.getCurrentUser().getUid();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("Donater").child(uid).child("donations");
-
-        getDonationInfo();
 
 
-        uName = findViewById(R.id.UName);
-        uCity = findViewById(R.id.UCity);
-        uPhone = findViewById(R.id.UPhone);
-        uArea = findViewById(R.id.UArea);
-
+//        uName = findViewById(R.id.UName);
+//        uCity = findViewById(R.id.UCity);
+//        uPhone = findViewById(R.id.UPhone);
+//        uArea = findViewById(R.id.UArea);
+//
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
 
 
-//        adapter = new MyListAdapter(donations);
-//
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-//        recyclerView.setAdapter(adapter);
+        adapter = new MyListAdapter(donations);
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setAdapter(adapter);
 //
 
         progressDialog=new ProgressDialog(this,4);
@@ -84,7 +80,31 @@ public class DonaterHome extends AppCompatActivity {
 
 
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
 
+        if(mAuth.getCurrentUser()==null){
+
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(
+
+                            R.id.fragment_container_donater, DonaterLogin.class, null)
+                    .commit();
+
+        }
+        else{
+            String uid = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            databaseReference = firebaseDatabase.getReference("Donater").child(uid).child("donations");
+
+            getDonationInfo();
+
+        }
+
+
+    }
     void getDonationInfo(){
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -99,7 +119,10 @@ public class DonaterHome extends AppCompatActivity {
                     String item_name = dsp.child("Donation Name").getValue().toString();
                     String item_desc = dsp.child("Donation Desc").getValue().toString();
                     String area = dsp.child("Donation Area").getValue().toString();
-
+//                    String currentLocation = "Donater";
+//                    if(dsp.child("Current Location").exists()) {
+//                       currentLocation = dsp.child("Current Location").getValue().toString();
+//                    }
 
                      data.add(name);
                      data.add(city);
@@ -107,19 +130,19 @@ public class DonaterHome extends AppCompatActivity {
                      data.add(item_name);
                      data.add(item_desc);
                      data.add(area);
-
+//                     data.add(currentLocation);
+                     donations.add(data);
+                     adapter.notifyDataSetChanged();
                      if(i == 0){
-                         uName.setText(name);
-                         uArea.setText(area);
-                         uPhone.setText(phone);
-                         uCity.setText(city);
+//                         uName.setText(name);
+//                         uArea.setText(area);
+//                         uPhone.setText(phone);
+//                         uCity.setText(city);
                          i=2;
 
                      }
 
-
-//                    donations.add(data);
-                    Toast.makeText(DonaterHome.this,""+data,Toast.LENGTH_LONG).show();
+//                    Toast.makeText(DonaterHome.this,""+data,Toast.LENGTH_LONG).show();
 
                 }
 
@@ -142,19 +165,5 @@ public class DonaterHome extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
-        if(mAuth.getCurrentUser()==null){
-
-                getSupportFragmentManager().beginTransaction()
-                        .setReorderingAllowed(true)
-                        .add(R.id.fragment_container_donater, DonaterLogin.class, null)
-                        .commit();
-
-        }
-
-
-    }
 }

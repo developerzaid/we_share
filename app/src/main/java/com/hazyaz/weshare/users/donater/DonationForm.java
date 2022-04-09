@@ -121,6 +121,8 @@ public class DonationForm extends Fragment {
         hashMap.put("Donation Desc",donation_desc);
         hashMap.put("Donation Area",donation_area);
         hashMap.put("TimeStamp", ""+System.currentTimeMillis());
+        hashMap.put("Current Location", "Donater");
+
 
 
         reference.child("donations").child(key).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {

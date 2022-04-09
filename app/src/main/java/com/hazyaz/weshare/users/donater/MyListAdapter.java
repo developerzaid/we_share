@@ -26,23 +26,24 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem= layoutInflater.inflate(R.layout.donater_listitem, parent, false);
-        return new ViewHolder(listItem);
+        ViewHolder viewHolder = new ViewHolder(listItem);
+        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final ArrayList<String> myListData = listdata.get(position);
 
-        holder.name.setText(myListData.get(0));
-//        holder.desc.setText(listdata[position]);
-//        holder.location.setText(listdata[position].getDonation_loc());
+        holder.name.setText(myListData.get(3));
+        holder.desc.setText(myListData.get(4));
+//        holder.location.setText(myListData.get(7));
 
 
 //        holder.imageView.setImageResource(listdata[position].getImgId());
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),"click on item: ",Toast.LENGTH_LONG).show();
+
             }
         });
     }
