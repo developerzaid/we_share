@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
@@ -72,10 +73,10 @@ public class AIHome extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Toast.makeText(getApplicationContext(),""+snapshot.getValue(),Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),""+snapshot.getValue(),Toast.LENGTH_LONG).show();
                 Object ic = snapshot.getValue();
 
-                Log.d("asdasdas",""+snapshot.getValue());
+//                Log.d("asdasdas",""+snapshot.getValue());
 
                 for (DataSnapshot dsp: snapshot.getChildren()){
                     String key = dsp.getKey();
@@ -112,7 +113,7 @@ public class AIHome extends AppCompatActivity {
 
                                    adapter.notifyDataSetChanged();
 
-                                Log.d("asdasdas 2",""+snapshot.child(Objects.requireNonNull(isp.getKey())).child("Donation Name").getValue());
+//                                Log.d("asdasdas 2",""+snapshot.child(Objects.requireNonNull(isp.getKey())).child("Donation Name").getValue());
 
                             }
 
@@ -143,29 +144,6 @@ public class AIHome extends AppCompatActivity {
         });
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -177,9 +155,7 @@ public class AIHome extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if(currentUser==null){
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, AILogin.class, null)
-                    .commit();
+            startActivity(new Intent(AIHome.this, AILogin.class));
         }
     }
 }

@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.animation.content.Content;
@@ -48,7 +49,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         Log.d("23djfjsdf","Inside My lsit");
         holder.name.setText(myListData.get(3));
         holder.desc.setText(myListData.get(4));
-        holder.location.setText(myListData.get(6));
+        holder.location.setText("Current Location: "+myListData.get(6));
         Log.d("thisisurl",""+myListData.get(7)+myListData.get(5));
         Picasso.get()
                 .load(myListData.get(7))
@@ -87,7 +88,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageViewxx;
         public TextView name,desc,location;
-        public RelativeLayout relativeLayout;
+        public CardView relativeLayout;
         public ViewHolder(View itemView) {
             super(itemView);
             this.imageViewxx = (ImageView) itemView.findViewById(R.id.imageViewwe);
@@ -95,7 +96,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
             this.name = (TextView) itemView.findViewById(R.id.itemName);
             this.desc = (TextView) itemView.findViewById(R.id.itemDesc);
             this.location = (TextView) itemView.findViewById(R.id.lastLocation);
-            relativeLayout = (RelativeLayout)itemView.findViewById(R.id.relativeLayoutdf);
+            relativeLayout = itemView.findViewById(R.id.relativeLayoutdf);
         }
     }
 }

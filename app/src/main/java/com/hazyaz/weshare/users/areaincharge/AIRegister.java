@@ -107,9 +107,12 @@ public class AIRegister extends AppCompatActivity {
 
     void RegisterAreaIncharge(String name, String pass, String email, String phone, String city,String area){
 
+        ProgressDialog progressDialog
+                = new ProgressDialog(this);
         progressDialog.setTitle("Registering User");
         progressDialog.setMessage("Please wait, registration in progress");
         progressDialog.show();
+
         final FirebaseAuth mAuth=FirebaseAuth.getInstance();
         mAuth.createUserWithEmailAndPassword(email,pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

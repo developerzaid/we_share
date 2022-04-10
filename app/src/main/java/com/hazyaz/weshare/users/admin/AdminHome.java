@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
@@ -21,7 +23,6 @@ import com.hazyaz.weshare.R;
 import com.hazyaz.weshare.users.donater.MyListAdapter;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class AdminHome extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -53,15 +54,11 @@ public class AdminHome extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("AreaIncharge");
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewadmin);
-
-
-
         adapter = new MyAIAdapter(AreaIncharge,"Admin Home",getApplicationContext());
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(adapter);
-
 
 
         showAllAreaIncharge();
@@ -82,7 +79,7 @@ public class AdminHome extends AppCompatActivity {
                      String email = dsp.child("Email").getValue().toString();
                      String phone = dsp.child("Phone").getValue().toString();
                      String area = dsp.child("area").getValue().toString();
-
+                     Log.d("sdfsd2333f4e34",""+name);
                      data.add(name);
                      data.add(email);
                      data.add(phone);
@@ -126,10 +123,9 @@ public class AdminHome extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if(currentUser==null){
-            getSupportFragmentManager().beginTransaction()
-                    .setReorderingAllowed(true)
-                    .add(R.id.fragment_container_view, AdminLogin.class, null)
-                    .commit();
+
+            startActivity(new Intent(AdminHome.this,AdminLogin.class));
+
         }
     }
 

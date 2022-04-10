@@ -11,26 +11,23 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
+
             <com.airbnb.lottie.LottieAnimationView
-                android:layout_width="250dp"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:layout_gravity="center"
-                android:layout_centerHorizontal="true"
                 android:id="@+id/intro_img"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginBottom="40dp"
                 app:lottie_autoPlay="true"
-                app:lottie_loop="true"></com.airbnb.lottie.LottieAnimationView>
+                app:lottie_loop="true">
+
+            </com.airbnb.lottie.LottieAnimationView>
 
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                app:cardCornerRadius="20dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                app:cardElevation="3dp"
-                app:cardBackgroundColor="@color/colorPrimary"
-                android:layout_height="wrap_content">
                 <TextView
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_background"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/intro_title"
@@ -43,8 +40,10 @@
                     android:gravity="center"
                     android:textAllCaps="true"
                     android:textStyle="bold"
-                    android:textSize="20dp"></TextView>
-            </androidx.cardview.widget.CardView>
+                    android:textSize="20dp">
+
+                </TextView>
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
@@ -70,7 +69,7 @@
 Description Descr iptionDescr iptionDe scriptionDe scriptionDescription
   Descripti onDescriptionDescriptionDescription Description Description Description"
                 android:id="@+id/intro_description"
-                android:textColor="@color/colorPrimary"
+                android:textColor="#FFC107"
                 android:layout_below="@+id/intro_title"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"

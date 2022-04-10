@@ -31,7 +31,7 @@ public class DonaterHome extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference,databaseRef;
     FirebaseAuth mAuth;
     ArrayList<ArrayList<String>> donations = new ArrayList<ArrayList<String>>();
     MyListAdapter adapter;
@@ -98,18 +98,44 @@ public class DonaterHome extends AppCompatActivity {
             String uid = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
             firebaseDatabase = FirebaseDatabase.getInstance();
             databaseReference = firebaseDatabase.getReference("Donater").child(uid).child("donations");
-
+            databaseRef = firebaseDatabase.getReference("Donater").child(uid);
+          getUserInfo();
             getDonationInfo();
 
         }
 
 
     }
+
+    void getUserInfo(){
+
+        databaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                uName.setText("Name: "+snapshot.child("Name").getValue().toString());
+                uArea.setText("Area: "+snapshot.child("area").getValue().toString());
+                uPhone.setText("Phone no: "+snapshot.child("Phone").getValue().toString());
+                uCity.setText("City: "+snapshot.child("city").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+
+
     void getDonationInfo(){
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
                 for (DataSnapshot dsp: snapshot.getChildren()){
 
                     ArrayList<String> data = new ArrayList<>();
@@ -133,14 +159,7 @@ public class DonaterHome extends AppCompatActivity {
 
                      donations.add(data);
                      adapter.notifyDataSetChanged();
-                     if(i == 0){
-                         uName.setText(name);
-                         uArea.setText(area);
-                         uPhone.setText(phone);
-                         uCity.setText(city);
-                         i=2;
 
-                     }
 
 //                    Toast.makeText(DonaterHome.this,""+data,Toast.LENGTH_LONG).show();
 

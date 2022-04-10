@@ -1,5 +1,6 @@
 package com.hazyaz.weshare.users.areaincharge;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -95,12 +96,18 @@ public class AILogin extends AppCompatActivity {
     }
 
     void LoginAreaIncharge(String username, String email, String password)
-    {
+    {       ProgressDialog progressDialog
+            = new ProgressDialog(this);
+        progressDialog.setTitle("Loggin User in");
+        progressDialog.setMessage("Please wait, loggin in progress");
+        progressDialog.show();
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            progressDialog.dismiss();
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();

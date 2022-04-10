@@ -17,12 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".users.areaincharge.AIDonationData"/>
+
         <activity android:name=".users.donater.DonaterHome" />
-        <activity android:name=".users.areaincharge.AIHome" />
         <activity android:name=".users.donater.DonationForm"/>
-        <activity android:name=".users.donater.DonaterRegister"/>
         <activity android:name=".users.donater.DonaterLogin"/>
+        <activity android:name=".users.donater.DonaterRegister"/>
+
+        <activity android:name=".users.areaincharge.AIHome" />
+        <activity android:name=".users.areaincharge.AIDonationData"/>
+        <activity android:name=".users.areaincharge.AIRegister"/>
+        <activity android:name=".users.areaincharge.AILogin"/>
+
         <activity android:name=".users.admin.AdminHome" />
         <activity android:name=".ContentActivity" />
         <activity

@@ -1,5 +1,6 @@
 package com.hazyaz.weshare.users.donater;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -84,12 +85,19 @@ donater_reg_button.setOnClickListener(new View.OnClickListener() {
 
    void DonaterLoginCred(String name, String email, String pass){
 
+       ProgressDialog progressDialog
+               = new ProgressDialog(this);
+       progressDialog.setTitle("Logging In");
+       progressDialog.setMessage("Please wait, Loggin in progress");
+       progressDialog.show();
+
        FirebaseAuth mAuth = FirebaseAuth.getInstance();
        mAuth.createUserWithEmailAndPassword(email, pass)
                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                    @Override
                    public void onComplete(@NonNull Task<AuthResult> task) {
                        if (task.isSuccessful()) {
+                           progressDialog.dismiss();
                            // Sign in success, update UI with the signed-in user's information
                            Log.d(TAG, "signInWithEmail:success");
                            FirebaseUser user = mAuth.getCurrentUser();

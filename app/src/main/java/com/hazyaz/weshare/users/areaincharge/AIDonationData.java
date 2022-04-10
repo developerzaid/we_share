@@ -59,8 +59,6 @@ public class AIDonationData extends AppCompatActivity {
         key = intent.getStringExtra("key");
         userkey = intent.getStringExtra("Userkey");
 
-        name = findViewById(R.id.xUserName);
-        city = findViewById(R.id.xUserCity);
         phone = findViewById(R.id.xUserPhone);
         itemname = findViewById(R.id.xItemName);
         itemdesc = findViewById(R.id.xItemDesc);
@@ -71,13 +69,13 @@ public class AIDonationData extends AppCompatActivity {
 
         Picasso.get().load(Image).into(imageViewd);
 
-        name.setText(uName);
-        city.setText(uCity);
-        phone.setText(uPhone);
-        itemname.setText(ItemName);
-        itemdesc.setText(ItemDesc);
-        areax.setText(area);
-        currentlocationx.setText(Current_Location);
+        name.setText("User Name : "+uName);
+        city.setText("User City : "+uCity);
+        phone.setText("User Phone : "+uPhone);
+        itemname.setText("Donation Name : "+ItemName);
+        itemdesc.setText("Donation Description : "+ItemDesc);
+        areax.setText("Donation Location : "+area);
+        currentlocationx.setText("Current Location : "+Current_Location);
 
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +83,7 @@ public class AIDonationData extends AppCompatActivity {
             public void onClick(View view) {
 //                updateDatabase();
 
-                Toast.makeText(AIDonationData.this,"Donation Accepted",Toast.LENGTH_LONG).show();
+//                Toast.makeText(AIDonationData.this,"Donation Accepted",Toast.LENGTH_LONG).show();
             }
         });
 
