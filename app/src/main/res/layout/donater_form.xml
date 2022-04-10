@@ -56,6 +56,12 @@
         android:id="@+id/donation_description"
         android:layout_height="wrap_content"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload Image"
+        android:id="@+id/ItemImagexxx"/>
+
   <Button
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

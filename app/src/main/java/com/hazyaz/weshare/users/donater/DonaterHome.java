@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,17 +46,17 @@ public class DonaterHome extends AppCompatActivity {
 
 
 
-//        uName = findViewById(R.id.UName);
-//        uCity = findViewById(R.id.UCity);
-//        uPhone = findViewById(R.id.UPhone);
-//        uArea = findViewById(R.id.UArea);
-//
+        uName = findViewById(R.id.UName);
+        uCity = findViewById(R.id.UCity);
+        uPhone = findViewById(R.id.UPhone);
+        uArea = findViewById(R.id.UArea);
+
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
 
 
-        adapter = new MyListAdapter(donations);
+        adapter = new MyListAdapter(donations,"DonaterHome",getApplicationContext());
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -71,10 +72,7 @@ public class DonaterHome extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                getSupportFragmentManager().beginTransaction()
-                        .setReorderingAllowed(true)
-                        .add(R.id.fragment_container_donater, DonationForm.class, null)
-                        .commit();
+               startActivity(new Intent(DonaterHome.this, DonationForm.class));
             }
         });
 
@@ -119,10 +117,8 @@ public class DonaterHome extends AppCompatActivity {
                     String item_name = dsp.child("Donation Name").getValue().toString();
                     String item_desc = dsp.child("Donation Desc").getValue().toString();
                     String area = dsp.child("Donation Area").getValue().toString();
-//                    String currentLocation = "Donater";
-//                    if(dsp.child("Current Location").exists()) {
-//                       currentLocation = dsp.child("Current Location").getValue().toString();
-//                    }
+                    String currentLocation = dsp.child("Current Location").getValue().toString();
+                    String Imagecc = dsp.child("Image").getValue().toString();
 
                      data.add(name);
                      data.add(city);
@@ -130,14 +126,16 @@ public class DonaterHome extends AppCompatActivity {
                      data.add(item_name);
                      data.add(item_desc);
                      data.add(area);
-//                     data.add(currentLocation);
+                     data.add(currentLocation);
+                     data.add(Imagecc);
+
                      donations.add(data);
                      adapter.notifyDataSetChanged();
                      if(i == 0){
-//                         uName.setText(name);
-//                         uArea.setText(area);
-//                         uPhone.setText(phone);
-//                         uCity.setText(city);
+                         uName.setText(name);
+                         uArea.setText(area);
+                         uPhone.setText(phone);
+                         uCity.setText(city);
                          i=2;
 
                      }

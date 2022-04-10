@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hazyaz.weshare">
 
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-feature android:name="android.hardware.camera"></uses-feature>
+ <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,8 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".users.donater.DonaterHome"></activity>
+        <activity android:name=".users.areaincharge.AIDonationData"/>
+        <activity android:name=".users.donater.DonaterHome" />
         <activity android:name=".users.areaincharge.AIHome" />
+        <activity android:name=".users.donater.DonationForm"/>
         <activity android:name=".users.admin.AdminHome" />
         <activity android:name=".ContentActivity" />
         <activity
