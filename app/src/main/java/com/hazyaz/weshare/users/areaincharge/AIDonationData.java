@@ -83,7 +83,9 @@ public class AIDonationData extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateDatabase();
+//                updateDatabase();
+
+                Toast.makeText(AIDonationData.this,"Donation Accepted",Toast.LENGTH_LONG).show();
             }
         });
 

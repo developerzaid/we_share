@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/admin_relative"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    >
+
+
+    <TextView
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/AIName"
+        android:textColor="#000000"
+        android:text="Area Inchagr Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textSize="16sp"/>
+
+    <TextView
+        android:layout_marginRight="20dp"
+        android:id="@+id/AIArea"
+        android:text="Mumbai Central "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/AIName"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:textStyle="italic"
+        android:layout_marginRight="20dp"
+        android:id="@+id/AIPHone"
+        android:text="Phone Number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/AIArea"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:textStyle="italic"
+        android:layout_marginRight="20dp"
+        android:id="@+id/AIEmail"
+        android:text="Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/AIPHone"
+        android:textSize="16sp"/>
+
+
+
+
+
+</RelativeLayout>
