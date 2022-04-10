@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,24 +28,23 @@ import com.hazyaz.weshare.users.areaincharge.AIRegister;
 
 import static android.content.ContentValues.TAG;
 
-public class DonaterLogin extends Fragment {
+public class DonaterLogin extends AppCompatActivity {
 
     EditText username, email , pass;
     Button donaterlogin_button;
-    TextView donater_reg_button;
-
+    Button donater_reg_button;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootViewAdmin = inflater.inflate(R.layout.donater_login,
-                container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.donater_login);
 
-        username=rootViewAdmin.findViewById(R.id.donater_username);
-        pass=rootViewAdmin.findViewById(R.id.donater_password);
-        email=rootViewAdmin.findViewById(R.id.donater_email);
-        donaterlogin_button=rootViewAdmin.findViewById(R.id.donater_loginBtn);
-donater_reg_button = rootViewAdmin.findViewById(R.id.donater_register);
+        username=findViewById(R.id.donater_username);
+        pass=findViewById(R.id.donater_password);
+        email=findViewById(R.id.donater_email);
+        donaterlogin_button=findViewById(R.id.donater_loginBtn);
+      donater_reg_button = findViewById(R.id.donater_register);
 
         donaterlogin_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,15 +74,11 @@ donater_reg_button = rootViewAdmin.findViewById(R.id.donater_register);
 donater_reg_button.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        DonaterRegister nextFrag= new DonaterRegister();
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container_donater, nextFrag, "findThisFragment")
-                .addToBackStack(null)
-                .commit();
+       startActivity(new Intent(getApplicationContext(),DonaterRegister.class));
     }
 });
 
-        return rootViewAdmin;
+
 
     }
 
@@ -90,18 +86,18 @@ donater_reg_button.setOnClickListener(new View.OnClickListener() {
 
        FirebaseAuth mAuth = FirebaseAuth.getInstance();
        mAuth.createUserWithEmailAndPassword(email, pass)
-               .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+               .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                    @Override
                    public void onComplete(@NonNull Task<AuthResult> task) {
                        if (task.isSuccessful()) {
                            // Sign in success, update UI with the signed-in user's information
                            Log.d(TAG, "signInWithEmail:success");
                            FirebaseUser user = mAuth.getCurrentUser();
-                           startActivity(new Intent(getContext(), DonaterHome.class));
+                           startActivity(new Intent(getApplicationContext(), DonaterHome.class));
                        } else {
                            // If sign in fails, display a message to the user.
                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                           Toast.makeText(getContext(),"Authentication failed."+task.getException(),
+                           Toast.makeText(getApplicationContext(),"Authentication failed."+task.getException(),
                                    Toast.LENGTH_SHORT).show();
 
                        }
@@ -111,6 +107,11 @@ donater_reg_button.setOnClickListener(new View.OnClickListener() {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
 
 

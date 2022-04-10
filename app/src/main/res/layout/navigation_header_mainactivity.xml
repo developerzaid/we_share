@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="We Share App"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/white"
         />
@@ -33,7 +33,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="We Share because We Care"
-    android:textSize="10sp"
+    android:textSize="15sp"
 
     android:textColor="@color/white"
     />

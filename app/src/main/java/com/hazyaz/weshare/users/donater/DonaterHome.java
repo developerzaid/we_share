@@ -78,18 +78,20 @@ public class DonaterHome extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
 
         if(mAuth.getCurrentUser()==null){
 
-            getSupportFragmentManager().beginTransaction()
-                    .setReorderingAllowed(true)
-                    .replace(
-
-                            R.id.fragment_container_donater, DonaterLogin.class, null)
-                    .commit();
+        startActivity(new Intent(DonaterHome.this,DonaterLogin.class));
 
         }
         else{

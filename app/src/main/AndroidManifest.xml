@@ -21,6 +21,8 @@
         <activity android:name=".users.donater.DonaterHome" />
         <activity android:name=".users.areaincharge.AIHome" />
         <activity android:name=".users.donater.DonationForm"/>
+        <activity android:name=".users.donater.DonaterRegister"/>
+        <activity android:name=".users.donater.DonaterLogin"/>
         <activity android:name=".users.admin.AdminHome" />
         <activity android:name=".ContentActivity" />
         <activity

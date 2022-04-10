@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,7 +33,7 @@ import com.hazyaz.weshare.R;
 
 import java.util.HashMap;
 
-public class AIRegister extends Fragment {
+public class AIRegister extends AppCompatActivity {
 
     String area[] = {"Mumbai-Central", "Mahim", "Nallasopara", "Andheri", "Byculla", "Jogeshwari"};
     EditText ai_name, ai_password, ai_email,ai_city, ai_phone, ai_;
@@ -40,33 +41,29 @@ public class AIRegister extends Fragment {
     Button register_ai_button;
     ProgressDialog progressDialog;
 
-    AIRegister(){
 
-    }
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.ai_register);
 
 
-        View rootViewAI = inflater.inflate(R.layout.ai_register,
-                container, false);
+        ai_name = findViewById(R.id.ai_reg_name);
+        ai_password = findViewById(R.id.ai_reg_password);
+        ai_email = findViewById(R.id.ai_reg_email);
+        ai_phone = findViewById(R.id.ai_reg_PhoneNo);
+        ai_city = findViewById(R.id.ai_reg_city);
+        register_ai_button = findViewById(R.id.ai_reg_submit);
 
-
-        ai_name = rootViewAI.findViewById(R.id.ai_reg_name);
-        ai_password = rootViewAI.findViewById(R.id.ai_reg_password);
-        ai_email = rootViewAI.findViewById(R.id.ai_reg_email);
-        ai_phone = rootViewAI.findViewById(R.id.ai_reg_PhoneNo);
-        ai_city = rootViewAI.findViewById(R.id.ai_reg_city);
-        register_ai_button = rootViewAI.findViewById(R.id.ai_reg_submit);
-
-        AreaSpinner = rootViewAI.findViewById(R.id.area_spinner_ai_register);
+        AreaSpinner = findViewById(R.id.area_spinner_ai_register);
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>
-                (getContext(), android.R.layout.simple_spinner_item,
+                (this, android.R.layout.simple_spinner_item,
                         area); //selected item will look like a spinner set from XML
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
         AreaSpinner.setAdapter(spinnerArrayAdapter);
-        progressDialog=new ProgressDialog(getContext(),4);
+        progressDialog=new ProgressDialog(this,4);
 
 
         register_ai_button.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +81,7 @@ public class AIRegister extends Fragment {
 
                 if(email.equals("")||name.equals("")||phone.equals("")||
                         city.equals("")||pass.equals("") ||area.equals("")     ){
-                    Toast.makeText(getContext(), "fill all the data ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "fill all the data ", Toast.LENGTH_SHORT).show();
                 }
                 else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                     ai_email.setError("Invalided Email");
@@ -97,7 +94,7 @@ public class AIRegister extends Fragment {
                 }
                 else{
                     SharedPreferences.Editor editor;
-                    editor= PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+                    editor= PreferenceManager.getDefaultSharedPreferences(AIRegister.this).edit();
                     editor.putString("AreaIncharge", "LoggedIn");
                     editor.apply();
                 }
@@ -105,15 +102,17 @@ public class AIRegister extends Fragment {
                 RegisterAreaIncharge(name,pass,email,phone,city,area);
             }
         });
-        return rootViewAI;
+
     }
 
     void RegisterAreaIncharge(String name, String pass, String email, String phone, String city,String area){
-        progressDialog.setMessage("Loading....");
+
+        progressDialog.setTitle("Registering User");
+        progressDialog.setMessage("Please wait, registration in progress");
         progressDialog.show();
         final FirebaseAuth mAuth=FirebaseAuth.getInstance();
         mAuth.createUserWithEmailAndPassword(email,pass)
-                .addOnCompleteListener((Activity) getContext(), new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
@@ -141,11 +140,11 @@ public class AIRegister extends Fragment {
                             DatabaseReference reference=database.getReference("AreaIncharge");
                             reference.child(uid).setValue(hashMap);
                             //sucess
-                            startActivity(new Intent(getContext(), AIHome.class));
+                            startActivity(new Intent(AIRegister.this, AIHome.class));
                         }
                         else {
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Authentication Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Authentication Failed", Toast.LENGTH_SHORT).show();
                         }
 
 
@@ -154,7 +153,7 @@ public class AIRegister extends Fragment {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressDialog.dismiss();
-                Toast.makeText(getContext(),""+e.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),""+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
 

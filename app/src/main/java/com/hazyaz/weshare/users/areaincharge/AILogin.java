@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,37 +28,34 @@ import com.hazyaz.weshare.R;
 
 import static android.content.ContentValues.TAG;
 
-public class AILogin extends Fragment {
+public class AILogin extends AppCompatActivity {
 
     EditText ai_username,ai_password,ai_email;
     Button loginBtn;
     FirebaseAuth mAuth;
-    TextView aiRegisterButton;
+    Button aiRegisterButton;
 
 
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootViewAdmin = inflater.inflate(R.layout.ai_login,
-                container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.ai_login);
 
-        ai_username=rootViewAdmin.findViewById(R.id.ai_username);
-        ai_password=rootViewAdmin.findViewById(R.id.ai_password);
-        ai_email=rootViewAdmin.findViewById(R.id.ai_email);
-        loginBtn=rootViewAdmin.findViewById(R.id.ai_loginBtn);
+
+
+
+        ai_username=findViewById(R.id.ai_username);
+        ai_password=findViewById(R.id.ai_password);
+        ai_email=findViewById(R.id.ai_email);
+        loginBtn=findViewById(R.id.ai_loginBtn);
         mAuth = FirebaseAuth.getInstance();
-        aiRegisterButton = rootViewAdmin.findViewById(R.id.ai_register);
+        aiRegisterButton = findViewById(R.id.ai_register);
 
 
      aiRegisterButton.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        AIRegister nextFrag= new AIRegister();
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, nextFrag, "findThisFragment")
-                .addToBackStack(null)
-                .commit();
+       startActivity(new Intent(AILogin.this,AIRegister.class));
     }
 });
 
@@ -85,7 +83,7 @@ public class AILogin extends Fragment {
                 else {
 
                     SharedPreferences.Editor editor;
-                    editor= PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+                    editor= PreferenceManager.getDefaultSharedPreferences(AILogin.this).edit();
                     editor.putString("admin_username", email.trim());
                     editor.putString("admin_password", password.trim());
                     editor.apply();
@@ -94,24 +92,23 @@ public class AILogin extends Fragment {
                 }
             }
         });
-        return rootViewAdmin;
     }
 
     void LoginAreaIncharge(String username, String email, String password)
     {
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            new Intent(getContext(), AIHome.class);
+                            new Intent(AILogin.this, AIHome.class);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(getContext(),"Authentication failed.",
+                            Toast.makeText(getApplicationContext(),"Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
 
                         }
